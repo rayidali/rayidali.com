@@ -42,7 +42,7 @@ const experience = [
   ] },
 ];
 const projects = [
-  { name: "Cinechrony", sub: "AI Film-Discovery App, iOS + Web", link: "https://cinechrony.com", label: "cinechrony.com", bullets: [
+  { name: "Cinechrony", sub: "AI Film-Discovery App, iOS + Web", link: "https://cinechrony.com", label: "cinechrony.com", store: "https://apps.apple.com/us/app/cinechrony/id6792422740", bullets: [
     "Cut worst-case latency 88%, from 223s to 26s, by replacing serial model retries with parallel execution that takes the first completion, in a Gemini pipeline that names every film in a shared TikTok or Reel",
     "Cut database reads ~99% per repeat session, from ≈270 to near zero, by adding write-invalidated caches, write-time denormalization, and client-direct queries",
     "Shipped solo to the App Store across web and native iOS (Next.js 15, Capacitor, Swift share extension) with 858 automated tests gating every release",
@@ -117,7 +117,7 @@ export default async function Resume() {
             <h2 className="vt">Projects</h2>
             {projects.map((p) => (
               <div className="cvitem" key={p.name}>
-                <div className="cvrow"><b>{p.name}</b>{p.sub && <span className="cvorg">{p.sub}</span>}<a className="cvwhen vt" href={p.link} target="_blank" rel="noopener">{p.label} ↗</a></div>
+                <div className="cvrow"><b>{p.name}</b>{p.sub && <span className="cvorg">{p.sub}</span>}<a className="cvwhen vt" href={p.link} target="_blank" rel="noopener">{p.label} ↗</a>{"store" in p && <a className="cvwhen vt" href={p.store} target="_blank" rel="noopener">App Store ↗</a>}</div>
                 <ul>{p.bullets.map((b) => <li key={b.slice(0, 40)}>{b}</li>)}</ul>
               </div>
             ))}

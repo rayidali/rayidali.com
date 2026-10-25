@@ -52,7 +52,9 @@ a{color:inherit;text-decoration:none}
 /* the desktop icon strip is fixed at x 22..98; keep the centred column clear of it on the left
    (and off the scrollbar on the right) when the window is too narrow to centre freely */
 .wrap{position:relative;z-index:5;--gutter:clamp(0px,1488px - 100vw,114px);
-  padding:0 min(var(--gutter),24px) 120px var(--gutter)}
+  padding:0 min(var(--gutter),24px) 120px var(--gutter);
+  /* windows waiting to slide in from the side sit past the edge; on phones that widened the page */
+  overflow-x:clip}
 .sec{position:relative;max-width:1220px;margin:0 auto;padding:0 40px}
 #work,#paper,#play,#mail{content-visibility:auto;contain-intrinsic-size:auto 900px}
 .serif{font-family:var(--font-serif),Georgia,serif;font-weight:400}
@@ -280,6 +282,7 @@ pre.rule{margin:0;font-family:var(--font-ascii);font-size:13px;color:#8fa4ef;whi
 .cvrow b{color:#14110f}
 .cvorg{color:#3a3f66}
 .cvwhen{margin-left:auto;font-size:18px;color:var(--blue);white-space:nowrap}
+.cvwhen+.cvwhen{margin-left:0}
 .cv ul{margin:6px 0 0;padding-left:18px}
 .cv li{margin:0 0 4px}
 .cvnote{margin:4px 0 0;color:#3a3f66}
@@ -312,7 +315,7 @@ pre.rule{margin:0;font-family:var(--font-ascii);font-size:13px;color:#8fa4ef;whi
   .xg{grid-template-columns:repeat(13,18px)}.xg i{width:18px;height:18px;font-size:10px}
   #consent{left:8px;right:8px;bottom:52px;width:auto;max-width:none}
   #consent .body{font-size:17px;padding:12px 14px}
-  .hero{padding:96px 0 40px}
+  .hero{padding:96px 18px 40px}
   .hero-side{min-height:520px}
   .sticky{width:200px;font-size:21px}
   .riso .lbl{font-size:14px}
