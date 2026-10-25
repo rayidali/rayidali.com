@@ -50,6 +50,8 @@ async function run(req: NextRequest) {
       resume_downloads: count((r) => r.event === "resume_download"),
       tracked_link_hits: count((r) => r.event === "ref_hit"),
       mail_clicks: count((r) => r.event === "mail_click"),
+      app_store_qr_scans: count((r) => r.event === "app_store" && (r.props as any)?.via === "qr"),
+      app_store_badge_clicks: count((r) => r.event === "outbound_click" && (r.props as any)?.target === "appstore"),
       outbound_clicks: top((r) => (r.event === "outbound_click" ? String((r.props as any)?.target) : null)),
       visits_by_ref: top((r) => (r.event === "page_view" ? label(r.ref) : null), 12),
       countries: top((r) => (r.event === "page_view" ? r.country : null)),

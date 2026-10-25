@@ -194,6 +194,27 @@ pre.rule{margin:0;font-family:var(--font-ascii);font-size:13px;color:#8fa4ef;whi
 .wl span{border-bottom:2px solid transparent;padding:0 2px}
 .wl span:hover,.wl span.on{color:var(--blue);border-bottom-color:var(--blue)}
 
+/* ============ release: cinechrony on the app store ============ */
+.release{margin:22px 0 34px;scroll-margin-top:24px}
+.release .body{display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center;padding:26px 28px}
+.appicon{position:relative;width:112px;height:112px}
+.appicon img{display:block;width:112px;height:112px;border-radius:25px;border:2px solid #000;box-shadow:5px 5px 0 #000}
+.appicon .status{top:-16px;right:-22px}
+.rkick{font-family:var(--font-vt),monospace;font-size:18px;color:var(--blue);letter-spacing:.04em;margin-bottom:8px}
+.release .pname{font-size:clamp(32px,3.4vw,46px)}
+.release .pdesc{max-width:560px}
+.rcta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.badge{display:inline-block;line-height:0;transition:transform .15s}
+.badge:hover{transform:translate(-2px,-2px)}
+.badge img{height:48px;width:auto}
+.qr{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.qr svg{display:block;width:150px;height:150px;background:#fff;padding:6px;border:2px solid #000;box-shadow:5px 5px 0 var(--blue)}
+.qr figcaption{font-family:var(--font-hand),cursive;font-size:21px;line-height:1.1;color:var(--ink);text-align:center;max-width:160px;transform:rotate(-2deg)}
+/* the QR is for people on a computer; on a phone the badge is the way in */
+@media not all and (hover:hover) and (pointer:fine){.release .qr{display:none}}
+.inl{color:var(--blue);border-bottom:1px dotted var(--blue)}
+.inl:hover{background:var(--yellow)}
+
 /* ============ paper ============ */
 .news{max-width:900px;margin:0 auto;background:var(--paper);color:#0b0b0f;padding:34px 40px 40px;border:2px solid #000;box-shadow:10px 10px 0 rgba(0,0,0,.5);
   transform:rotate(-.6deg);position:relative}
@@ -274,6 +295,8 @@ pre.rule{margin:0;font-family:var(--font-ascii);font-size:13px;color:#8fa4ef;whi
   .wrap{--gutter:0px}
   .story{grid-template-columns:1fr}
   .proj{grid-template-columns:1fr}
+  .release .qr{display:none}
+  .release .body{grid-template-columns:auto 1fr}
   .news .cols{grid-template-columns:1fr}
   .np{grid-template-columns:1fr}
   .puzzle{grid-template-columns:1fr}
@@ -285,6 +308,7 @@ pre.rule{margin:0;font-family:var(--font-ascii);font-size:13px;color:#8fa4ef;whi
   .banner{font-size:8px}
   .riso{width:150px}.riso .p{height:110px}
   .dialog{width:260px}
+  .release .body{grid-template-columns:1fr;gap:22px;padding:22px 18px}
   .xg{grid-template-columns:repeat(13,18px)}.xg i{width:18px;height:18px;font-size:10px}
   #consent{left:8px;right:8px;bottom:52px;width:auto;max-width:none}
   #consent .body{font-size:17px;padding:12px 14px}
