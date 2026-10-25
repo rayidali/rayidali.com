@@ -8,7 +8,11 @@ if (typeof window !== "undefined" && dsn) {
   window.addEventListener("error", onErr);
   window.addEventListener("unhandledrejection", onRej);
   const boot = () => import("@sentry/nextjs").then((Sentry) => {
-    Sentry.init({ dsn, sendDefaultPii: false, integrations: [] });
+    Sentry.init({
+      dsn, sendDefaultPii: false, integrations: [],
+      /* Outlook / Defender Safe Links scanners open emailed links and reject this from their own injected code */
+      ignoreErrors: [/Object Not Found Matching Id:\d+, MethodName:\w+, ParamCount:\d+/],
+    });
     window.removeEventListener("error", onErr);
     window.removeEventListener("unhandledrejection", onRej);
     early.splice(0).forEach((e) => Sentry.captureException(e.value));

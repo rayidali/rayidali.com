@@ -222,8 +222,17 @@ export default function Desktop() {
     const nav = navigator as any;
     /* privacy tools (DuckDuckGo extension, Firefox RFP, Tor, Brave) report exactly 2 cores on any machine, so only a single core counts as weak */
     const lowEnd = Boolean(nav.connection?.saveData) || (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 2) || (typeof nav.hardwareConcurrency === "number" && nav.hardwareConcurrency < 2);
+    /* three.js is WebGL2 only; headless crawlers have no context at all, or a stub missing the WebGL2 calls, so probe on a scratch canvas first */
+    const webgl2 = () => {
+      try {
+        const gl = document.createElement("canvas").getContext("webgl2");
+        const ok = Boolean(gl && typeof gl.texImage3D === "function");
+        gl?.getExtension("WEBGL_lose_context")?.loseContext();
+        return ok;
+      } catch { return false; }
+    };
     const startThree = () => {
-      if (!canvas || reduce || lowEnd) { canvas?.classList.add("fallback"); return; }
+      if (!canvas || reduce || lowEnd || !webgl2()) { canvas?.classList.add("fallback"); return; }
       const go = () => import("./scene")
         .then(({ buildScene }) => { safe("three", () => { scene3 = buildScene(canvas, small); }); if (!scene3) canvas.classList.add("fallback"); })
         .catch((err) => { canvas.classList.add("fallback"); console.error(err); });
